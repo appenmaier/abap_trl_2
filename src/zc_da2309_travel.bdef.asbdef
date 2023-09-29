@@ -1,0 +1,22 @@
+projection;
+strict ( 2 );
+
+define behavior for ZC_DA2309_Travel alias Travel
+{
+  use create;
+  use update;
+  use delete;
+  use association _Bookings { create; }
+
+  use action show_test_message;
+  use action cancel_booking;
+  use action maintain_booking_fees;
+}
+
+define behavior for ZC_DA2309_Booking alias Booking
+{
+  use update;
+  use delete;
+
+  use association _Travel;
+}
