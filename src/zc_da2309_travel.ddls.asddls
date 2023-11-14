@@ -8,9 +8,9 @@ define root view entity ZC_DA2309_Travel
 {
   key TravelUuid,
       TravelId,
+      @Consumption.valueHelpDefinition: [{ entity: { name: '/DMO/I_Agency_StdVH', element: 'AgencyID' } }]
       AgencyId,
       @Consumption.valueHelpDefinition: [{ entity: { name: 'ZI_DA2309_CustomerVH', element: 'CustomerId' } }]
-      @ObjectModel.text.element: [ 'CustomerName' ]
       CustomerId,
       BeginDate,
       EndDate,
@@ -30,10 +30,11 @@ define root view entity ZC_DA2309_Travel
       Lastchangedby,
       Lastchangedat,
 
-      /* Transient Data */
+      /* TransientData */
+      CustomerName,
       StatusCriticality,
       BeginDateCriticality,
-      _CustomerText.CustomerName as CustomerName,
+      SystemDate,
 
       /* Associations */
       _Bookings : redirected to composition child ZC_DA2309_Booking

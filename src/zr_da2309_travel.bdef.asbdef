@@ -1,30 +1,46 @@
 managed implementation in class zbp_r_da2309_travel unique;
 strict ( 2 );
+with draft;
 
 /* Wurzelknoten Travel */
 define behavior for ZR_DA2309_Travel alias Travel
 persistent table zda2309_atravel
+draft table zda2309_dtravel
 lock master
+total etag LastChangedAt
 authorization master ( instance )
-//etag master <field_name>
+//etag master Lastchangedat
 {
   create;
   update;
   delete;
-  association _Bookings { create; }
+  association _Bookings { create; with draft; }
 
-  static action show_test_message;
-  action cancel_booking;
-  action maintain_booking_fees parameter ZA_DA2309_BookingFees;
-  validation validate_travel_period on save { create; }
-  determination determine_travel_id on modify { update; }
+  draft action Edit;
+  draft action Resume;
+  draft action Activate optimized;
+  draft action Discard;
+  draft determine action Prepare {
+   validation validate_dates;
+   validation validate_customer;
+   validation validate_agency;
+  }
+
+  static action show_message;
+  action cancel_travel result [1] $self;
+  action maintain_booking_fee parameter ZA_DA2309_BookingFee result [1] $self;
+
+  validation validate_dates on save { create; }
+  validation validate_customer on save { create; }
+  validation validate_agency on save { create; }
+
+  determination determine_status on modify { create; }
+  determination determine_travel_id on modify { create; }
 
   field ( readonly, numbering : managed ) TravelUuid;
-  field ( readonly ) TravelId, TotalPrice;
-  field ( readonly ) Createdby, Createdat, Lastchangedby, Lastchangedat;
-  field ( mandatory : create ) AgencyId, BeginDate, CustomerId, EndDate;
-  field ( readonly : update ) AgencyId, BeginDate, CustomerId, EndDate;
-  field ( mandatory ) Description;
+  field ( mandatory : create ) AgencyId, BeginDate, CustomerId, Description, EndDate;
+  field ( readonly : update ) AgencyId, BeginDate, CustomerId, Description, EndDate;
+  field ( readonly ) Createdat, Createdby, Lastchangedat, Lastchangedby, Status, TravelId;
 
   mapping for zda2309_atravel corresponding
     {
@@ -44,9 +60,9 @@ authorization master ( instance )
 /* Kindknoten Booking */
 define behavior for ZR_DA2309_Booking alias Booking
 persistent table zda2309_abooking
+draft table zda2309_dbooking
 lock dependent by _Travel
 authorization dependent by _Travel
-//etag master <field_name>
 {
   update;
   delete;
@@ -54,7 +70,7 @@ authorization dependent by _Travel
   field ( readonly, numbering : managed ) BookingUuid;
   field ( readonly ) TravelUuid;
 
-  association _Travel;
+  association _Travel { with draft; }
 
   mapping for zda2309_abooking corresponding
     {

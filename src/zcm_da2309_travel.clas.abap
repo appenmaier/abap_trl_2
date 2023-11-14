@@ -59,7 +59,10 @@ CLASS zcm_da2309_travel DEFINITION
 
 ENDCLASS.
 
-CLASS zcm_da2309_travel IMPLEMENTATION.
+
+
+CLASS ZCM_DA2309_TRAVEL IMPLEMENTATION.
+
 
   METHOD constructor ##ADT_SUPPRESS_GENERATION.
     super->constructor( previous = i_previous ).
@@ -69,5 +72,4 @@ CLASS zcm_da2309_travel IMPLEMENTATION.
     user_name = i_user_name.
     travel = i_travel.
   ENDMETHOD.
-
 ENDCLASS.

@@ -3,7 +3,7 @@
 {
 "FROM":
 [
-"ZI_DA2309_CUSTOMER"
+"/DMO/CUSTOMER"
 ],
 "ASSOCIATED":
 [],

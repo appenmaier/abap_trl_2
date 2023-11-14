@@ -6,7 +6,7 @@
   title.value: 'TravelUuid',
   description.value: 'Description'
 }
-@UI.presentationVariant: [{ sortOrder: [{ by: 'BeginDate', direction: #DESC }, { by: 'TravelId', direction: #ASC }] }]
+@UI.presentationVariant: [{ sortOrder: [{ by: 'BeginDate', direction: #DESC }] }]
 annotate view ZC_DA2309_Travel with
 {
 
@@ -21,11 +21,10 @@ annotate view ZC_DA2309_Travel with
   /* Actions */
   @UI.lineItem:
   [
-    { position: 10, label: 'Show Test Message', type: #FOR_ACTION, dataAction: 'SHOW_TEST_MESSAGE' },
-    { position: 20, label: 'Cancel Travel', type: #FOR_ACTION, dataAction: 'CANCEL_BOOKING' }
+    { position: 10, type: #FOR_ACTION, label: 'Show Message', dataAction: 'ShowMessage' },
+    { position: 20, type: #FOR_ACTION, label: 'Cancel Travel', dataAction: 'CancelTravel' }
   ]
-  
-  @UI.identification: [{ position: 10, label: 'Maintain Booking Fees', type: #FOR_ACTION, dataAction: 'MAINTAIN_BOOKING_FEES' }]
+  @UI.identification: [{ position: 10, type: #FOR_ACTION, label: 'Maintain Booking Fee', dataAction: 'MaintainBookingFee' }]
 
   /* Fields */
   @UI.fieldGroup: [{ position: 10, qualifier: 'AdminData' }]
@@ -63,16 +62,15 @@ annotate view ZC_DA2309_Travel with
   @UI.fieldGroup: [{ position: 70, qualifier: 'TravelDetails' }]
   TotalPrice;
 
-  //  @UI.hidden: true
   //  CurrencyCode;
 
   @UI.lineItem: [{ position: 70, criticality: 'BeginDateCriticality', criticalityRepresentation: #WITHOUT_ICON }]
   @UI.fieldGroup: [{ position: 80, qualifier: 'TravelDetails' }]
   Description;
 
-  @UI.lineItem: [{ position: 80, criticality: 'StatusCriticality', criticalityRepresentation: #WITHOUT_ICON }]
+  @UI.lineItem: [{ position: 80, criticality: 'StatusCriticality', importance: #HIGH }]
   @UI.selectionField: [{ position: 60 }]
-  @UI.fieldGroup: [{ position: 90, qualifier: 'TravelDetails', criticality: 'StatusCriticality', criticalityRepresentation: #WITHOUT_ICON }]
+  @UI.fieldGroup: [{ position: 90, qualifier: 'TravelDetails', criticality: 'StatusCriticality' }]
   Status;
 
   @UI.fieldGroup: [{ position: 20, qualifier: 'AdminData' }]
@@ -86,5 +84,17 @@ annotate view ZC_DA2309_Travel with
 
   @UI.fieldGroup: [{ position: 50, qualifier: 'AdminData' }]
   Lastchangedat;
+
+  @UI.hidden: true
+  CustomerName;
+
+  @UI.hidden: true
+  StatusCriticality;
+
+  @UI.hidden: true
+  BeginDateCriticality;
+
+  @UI.hidden: true
+  SystemDate;
 
 }

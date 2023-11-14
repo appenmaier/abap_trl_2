@@ -1,5 +1,6 @@
+@AbapCatalog.viewEnhancementCategory: [#NONE]
 @AccessControl.authorizationCheck: #NOT_REQUIRED
-@EndUserText.label: 'Status Value Help'
+@EndUserText.label: 'Status'
 define view entity ZI_DA2309_StatusVH
   as select from DDCDS_CUSTOMER_DOMAIN_VALUE_T( p_domain_name: '/DMO/STATUS' )
 {
@@ -14,3 +15,5 @@ define view entity ZI_DA2309_StatusVH
       @EndUserText: { label: 'Status Text', quickInfo: 'Status Text' }
       text      as StatusText
 }
+where
+  language = $session.system_language

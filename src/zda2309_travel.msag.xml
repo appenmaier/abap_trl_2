@@ -26,6 +26,24 @@
      <MSGNR>003</MSGNR>
      <TEXT>Travel &amp;1 is already cancelled</TEXT>
     </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDA2309_TRAVEL</ARBGB>
+     <MSGNR>004</MSGNR>
+     <TEXT>No Agency found for Agency ID &amp;1</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDA2309_TRAVEL</ARBGB>
+     <MSGNR>005</MSGNR>
+     <TEXT>No Customer found for Customer ID &amp;1</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDA2309_TRAVEL</ARBGB>
+     <MSGNR>006</MSGNR>
+     <TEXT>Begin Date must be before End Date</TEXT>
+    </T100>
    </T100>
   </asx:values>
  </asx:abap>

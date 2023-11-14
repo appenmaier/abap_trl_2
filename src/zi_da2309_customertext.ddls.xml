@@ -5,7 +5,7 @@
    <DDLS>
     <DDLNAME>ZI_DA2309_CUSTOMERTEXT</DDLNAME>
     <DDLANGUAGE>E</DDLANGUAGE>
-    <DDTEXT>Customer Textelement</DDTEXT>
+    <DDTEXT>Customer Text</DDTEXT>
     <SOURCE_TYPE>W</SOURCE_TYPE>
    </DDLS>
   </asx:values>
